@@ -82,4 +82,22 @@ class TestT1ApplicationTests {
         assertThat(response.getContentAsString())
                 .contains("Your string may contain only letters, digits, underscores, dashes and dots");
     }
+
+    @Test
+    public void testWithTooLongString() throws Exception {
+
+        final MockHttpServletResponse response = mockMvc.perform(
+                        post(STRING_URL)
+                                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                                .queryParam("customString", "a".repeat(257)))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse();
+
+        assertThat(response.getContentType()).isEqualTo("text/html;charset=UTF-8");
+
+        assertThat(response.getContentAsString())
+                .contains("Your string has to have from 1 to 255 characters");
+    }
+
 }
