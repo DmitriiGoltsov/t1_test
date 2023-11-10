@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Character count</title>
+</head>
+<body>
+
+<table style="border: solid 1px black">
+
+    <thead>
+    <tr>
+        <th>Character</th>
+        <th>Count</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="entity: ${characterCount}">
+        <td th:text="${entity.key} + ' : '" />
+        <td th:text="${entity.value}" />
+    </tr>
+    </tbody>
+
+</table>
+<br/>
+
+<a th:href="@{/}">Check another string</a>
+
+</body>
+</html>

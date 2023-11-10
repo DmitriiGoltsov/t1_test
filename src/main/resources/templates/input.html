@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Check your string</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/strings}" th:object="${customString}">
+    <label for="customString">Enter your custom string: </label>
+    <input name="customString" type="text" id="customString">
+    <div style="color:red" th:if="${#fields.hasErrors('customString')}" th:errors="*{customString}">Custom string Error</div>
+    <br/>
+
+    <input type="submit" value="Check your string!"/>
+</form>
+
+
+</body>
+</html>
